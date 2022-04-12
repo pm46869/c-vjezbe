@@ -1,0 +1,15 @@
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\bin\Debug\Vjezba3C.exe.config
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\bin\Debug\Vjezba3C.exe
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\bin\Debug\Vjezba3C.pdb
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C.csproj.AssemblyReference.cache
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\MainWindow.g.cs
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\App.g.cs
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C_MarkupCompile.cache
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C_MarkupCompile.lref
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\MainWindow.baml
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C.g.resources
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C.Properties.Resources.resources
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C.csproj.GenerateResource.cache
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C.csproj.CoreCompileInputs.cache
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C.exe
+C:\Users\Petar\source\repos\Vjezba3C\Vjezba3C\obj\Debug\Vjezba3C.pdb
