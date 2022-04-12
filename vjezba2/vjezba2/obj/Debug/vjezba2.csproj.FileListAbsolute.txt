@@ -1,0 +1,7 @@
+C:\Users\Petar\source\repos\vjezba2\vjezba2\obj\Debug\vjezba2.csproj.AssemblyReference.cache
+C:\Users\Petar\source\repos\vjezba2\vjezba2\obj\Debug\vjezba2.csproj.CoreCompileInputs.cache
+C:\Users\Petar\source\repos\vjezba2\vjezba2\bin\Debug\vjezba2.exe.config
+C:\Users\Petar\source\repos\vjezba2\vjezba2\bin\Debug\vjezba2.exe
+C:\Users\Petar\source\repos\vjezba2\vjezba2\bin\Debug\vjezba2.pdb
+C:\Users\Petar\source\repos\vjezba2\vjezba2\obj\Debug\vjezba2.exe
+C:\Users\Petar\source\repos\vjezba2\vjezba2\obj\Debug\vjezba2.pdb
