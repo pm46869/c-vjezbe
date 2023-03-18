@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,12 +42,12 @@ namespace Vjezba1
             {
                 Spol spol;
                 Console.WriteLine("Upisi 1 za dodat novog pacijenti, 2 za izmjenu postojeceg pacijenta i bilo sta drugo za ispis svih pacijenata");
-                int izbor = Int32.Parse(Console.ReadLine());
-                if (izbor == 1)
+                string izbor = Console.ReadLine();
+                if (izbor == "1")
                 {
                     Console.WriteLine("Upisati OIB pacijenta:");
                     string oib = Console.ReadLine();
-                    while (oib.Length != 11 || digitsOnly(oib)==false)
+                    while (oib.Length != 11 || digitsOnly(oib) == false)
                     {
                         Console.WriteLine("Neisparavn OIB, ponovite:");
                         oib = Console.ReadLine();
@@ -66,11 +67,12 @@ namespace Vjezba1
 
                     Console.WriteLine("Upisati datum rodenja pacijenta(mm/dd/gggg):");
                     string input = Console.ReadLine();
+                    DateTime datum;
                     while (true)
                     {
                         if (DateTime.TryParse(input, out DateTime date))
                         {
-                            DateTime datum = DateTime.Parse(input);
+                            datum = DateTime.Parse(input);
                             if (datum < DateTime.Now)
                             {
                                 break;
@@ -108,54 +110,125 @@ namespace Vjezba1
                     Console.WriteLine("Upisati dijagnozu pacijenta:");
                     string dijagnoza = Console.ReadLine();
 
-                    Pacijent account = new Pacijent { OIB = oib, MBO = mbo, Ime = ime, DatumRod=datum, spol=spol, dijagnoza=dijagnoza };
+                    Pacijent account = new Pacijent { OIB = oib, MBO = mbo, Ime = ime, DatumRod = datum, spol = spol, dijagnoza = dijagnoza };
                     Pacijenti.Add(account);
 
                 }
-                if(izbor == 2)
+                if (izbor == "2")
                 {
                     Console.WriteLine("Izaberite OIB pacijenta kojeg zelite promjeniti");
                     string provOib = Console.ReadLine();
-                    while(Pacijenti.Exists(p=>p.OIB == provOib) == false)
+                    bool found = false;
+                    while (!found)
                     {
-                        Console.WriteLine("Ne postoji pacijent sa tim OIBom, unesite OIB ponovno");
-                        provOib = Console.ReadLine();
-                    }
-
-                    Console.WriteLine("Upisi 1 za izmjenu OIB-a, 2 za MBO, 3 za ime i prezime, 4 za datum rodenja, 5 za spol, 6  za dijagnozu, i bilo sta drugo sa povratak");
-                    string a = Console.ReadLine();
-                    if (a == "1")
-                    {
-                        Console.WriteLine("Upisati OIB pacijenta:");
-                        string oib = Console.ReadLine();
-                        while (oib.Length != 11 || digitsOnly(oib) == false)
+                        for(int i = 0; i<Pacijenti.Count;i++)
                         {
-                            Console.WriteLine("Neisparavn OIB, ponovite:");
-                            oib = Console.ReadLine();
+                            if (Pacijenti[i].OIB == provOib)
+                            {
+                                found = true;
+                                Console.WriteLine("Upisi 1 za izmjenu OIB-a, 2 za MBO, 3 za ime i prezime, 4 za datum rodenja, 5 za spol, 6  za dijagnozu, i bilo sta drugo sa povratak");
+                                string a = Console.ReadLine();
+                                if (a == "1")
+                                {
+                                    Console.WriteLine("Upisati OIB pacijenta:");
+                                    string oib = Console.ReadLine();
+                                    while (oib.Length != 11 || digitsOnly(oib) == false)
+                                    {
+                                        Console.WriteLine("Neisparavn OIB, ponovite:");
+                                        oib = Console.ReadLine();
+                                    }
+                                    Pacijent p = Pacijenti[i];
+                                    p.OIB = oib;
+                                    Pacijenti[i] = p;
+
+                                }
+                                if (a == "2")
+                                {
+                                    Console.WriteLine("Upisati MBO pacijenta:");
+                                    string mbo = Console.ReadLine();
+                                    while (mbo.Length != 9 || digitsOnly(mbo) == false)
+                                    {
+                                        Console.WriteLine("Neisparavn MBO, ponovite:");
+                                        mbo = Console.ReadLine();
+                                    }
+                                    Pacijent p = Pacijenti[i];
+                                    p.MBO = mbo;
+                                    Pacijenti[i] = p;
+                                }
+                                if (a == "3")
+                                {
+                                    Console.WriteLine("Upisati ime i prezime pacijenta:");
+                                    string ime = Console.ReadLine();
+                                    Pacijent p = Pacijenti[i];
+                                    p.Ime = ime;
+                                    Pacijenti[i] = p;
+                                }
+                                if (a == "4")
+                                {
+                                    Console.WriteLine("Upisati datum rodenja pacijenta(mm/dd/gggg):");
+                                    string input = Console.ReadLine();
+                                    DateTime datum;
+                                    while (true)
+                                    {
+                                        if (DateTime.TryParse(input, out DateTime date))
+                                        {
+                                            datum = DateTime.Parse(input);
+                                            if (datum < DateTime.Now)
+                                            {
+                                                break;
+                                            }
+                                            Console.WriteLine("Unijeli ste datum u buducnosti, ponovite: ");
+                                            input = Console.ReadLine();
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Krivi format datuma, ponovni upis(mm/dd/gggg)");
+                                            input = Console.ReadLine();
+                                        }
+                                    }
+                                    Pacijent p = Pacijenti[i];
+                                    p.DatumRod = datum;
+                                    Pacijenti[i] = p;
+                                }
+                                if (a == "5")
+                                {
+                                    Console.WriteLine("Unesite 1 za musko, 2 za zensko:");
+                                    string izborSpola = Console.ReadLine();
+                                    while (true)
+                                    {
+                                        if (izborSpola == "1")
+                                        {
+                                            Pacijent p = Pacijenti[i];
+                                            p.spol = Spol.Musko;
+                                            Pacijenti[i] = p;
+                                            break;
+                                        }
+                                        if (izborSpola == "2")
+                                        {
+                                            Pacijent p = Pacijenti[i];
+                                            p.spol = Spol.Zensko;
+                                            Pacijenti[i] = p;
+                                        }
+                                        Console.WriteLine("Krivi izbor(1 za musko, 2 za zensko):");
+                                        izborSpola = Console.ReadLine();
+                                    }
+                                }
+                                if (a == "6")
+                                {
+                                    Console.WriteLine("Upisati dijagnozu pacijenta:");
+                                    string dijagnoza = Console.ReadLine();
+                                    Pacijent p = Pacijenti[i];
+                                    p.dijagnoza = dijagnoza;
+                                    Pacijenti[i] = p;
+                                }
+                                else { break; }
+                            }
+                            else {
+                                Console.WriteLine("Ne postoji pacijent sa tim OIB-om, ponovite:");
+                                provOib = Console.ReadLine();
+                            }
                         }
-                        
-   
-
-                    }
-                    if (a == "2")
-                    {
-
-                    }
-                    if (a == "3")
-                    {
-
-                    }
-                    if (a == "4")
-                    {
-
-                    }
-                    if (a == "5")
-                    {
-
-                    }
-                    if (a == "6")
-                    {
-
                     }
 
                 }
